@@ -24,6 +24,7 @@ protected:
 
 private:
 	void PerformRaycast();
+	void PlayerSpotted();
 
 public:	
 	// Called every frame
@@ -33,6 +34,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// Create an float distance for the raycast to be able to travel
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Raycast")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
 	float EnemyViewDistance = 1000.0f;
+
+	// A Boolean to check if the Sentry is searching for the player
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
+	bool SearchingForPlayer = true;
 };

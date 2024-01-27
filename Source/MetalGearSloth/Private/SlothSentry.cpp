@@ -48,8 +48,12 @@ void ASlothSentry::PerformRaycast()
 	bool RaycastHit = UKismetSystemLibrary::LineTraceSingle(GetWorld(), StartTrace, EndLocation, UEngineTypes::ConvertToTraceType(ECC_Pawn), false, ActorsToIgnore, EDrawDebugTrace::ForOneFrame, HitResult, true, FLinearColor::Red, FLinearColor::Green, 0.0f);
 	if (RaycastHit && HitResult.GetActor() != nullptr && HitResult.GetActor()->ActorHasTag("Player"))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Hit: %s"), *HitResult.GetActor()->GetName()));
-	}else{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("No Hit")));
+		PlayerSpotted();
 	}
+}
+
+void ASlothSentry::PlayerSpotted()
+{
+	SearchingForPlayer = false;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Player Spotted")));
 }
