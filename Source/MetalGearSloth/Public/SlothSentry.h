@@ -37,6 +37,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
 	float EnemyViewDistance = 1000.0f;
 
+	// Set the width of the sentry cone based on this float in degrees
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
+	float SentryConeWidth = 90.0f;
+
 	// A Boolean to check if the Sentry is searching for the player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
 	bool SearchingForPlayer = true;
