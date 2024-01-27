@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "SlothSentry.generated.h"
 
+class ATargetPoint;
+
 UCLASS()
 class METALGEARSLOTH_API ASlothSentry : public ACharacter
 {
@@ -15,8 +17,11 @@ public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//UPawnMovementComponent* PawnMovementComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<ATargetPoint*> PatrolLocations;
+
+protected:
+	int currentPatrolLocationIndex = 0;
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,5 +33,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	void MoveToNextPatrolLocation();
 
 };
