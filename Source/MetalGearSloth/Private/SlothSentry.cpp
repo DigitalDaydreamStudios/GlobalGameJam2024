@@ -84,6 +84,7 @@ void ASlothSentry::PerformRaycast()
 
 void ASlothSentry::PlayerSpotted()
 {
-	// SearchingForPlayer = false;
+	SearchingForPlayer = false;
+	OnPlayerSpotted.Broadcast();
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Player Spotted")));
 }

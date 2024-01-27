@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "SlothSentry.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPlayerSpottedDelegate);
+
 UCLASS()
 class METALGEARSLOTH_API ASlothSentry : public ACharacter
 {
@@ -14,9 +16,7 @@ class METALGEARSLOTH_API ASlothSentry : public ACharacter
 public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//UPawnMovementComponent* PawnMovementComponent;
+	FPlayerSpottedDelegate OnPlayerSpotted;
 
 protected:
 	// Called when the game starts or when spawned
