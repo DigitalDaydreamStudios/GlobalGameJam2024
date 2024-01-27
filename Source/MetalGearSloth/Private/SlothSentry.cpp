@@ -19,7 +19,26 @@ ASlothSentry::ASlothSentry()
 void ASlothSentry::BeginPlay()
 {
 	Super::BeginPlay();
+	currentPatrolLocationIndex = -1;
+	MoveToNextPatrolLocation();
+}
 
+// Called every frame
+void ASlothSentry::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+
+// Called to bind functionality to input
+void ASlothSentry::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+}
+
+void ASlothSentry::MoveToNextPatrolLocation()
+{
 	if (PatrolLocations.Num() > 0)
 	{
 		AAIController* AIController = Cast<AAIController>(GetController());
@@ -34,6 +53,8 @@ void ASlothSentry::BeginPlay()
 			MoveReq.SetUsePathfinding(true);
 			MoveReq.SetAcceptanceRadius(5.f);
 			MoveReq.SetReachTestIncludesAgentRadius(bStopOnOverlap);
+			if (currentPatrolLocationIndex >= (PatrolLocations.Num() - 1)) { currentPatrolLocationIndex = 0; }
+			else { currentPatrolLocationIndex++; }
 			//if (TargetActor)
 			//{
 			//	MoveReq.SetGoalActor(TargetActor);
@@ -65,20 +86,6 @@ void ASlothSentry::BeginPlay()
 			//}
 		}
 	}
-	
-}
-
-// Called every frame
-void ASlothSentry::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-// Called to bind functionality to input
-void ASlothSentry::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	return;
 }
 
