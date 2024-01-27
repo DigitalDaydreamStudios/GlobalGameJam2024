@@ -24,8 +24,10 @@ void ASlothSentry::BeginPlay()
 void ASlothSentry::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	PerformRaycast();
+	if (SearchingForPlayer)
+	{
+		PerformRaycast();
+	}
 }
 
 // Called to bind functionality to input
