@@ -2,6 +2,8 @@
 
 
 #include "SlothSentry.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Engine/EngineTypes.h"
 
 // Sets default values
 ASlothSentry::ASlothSentry()
@@ -23,6 +25,7 @@ void ASlothSentry::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	PerformRaycast();
 }
 
 // Called to bind functionality to input
@@ -32,3 +35,21 @@ void ASlothSentry::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 }
 
+void ASlothSentry::PerformRaycast()
+{
+	FHitResult HitResult;
+	FVector StartTrace = GetActorLocation();
+	FVector EndLocation = StartTrace + (GetActorForwardVector() * EnemyViewDistance);
+	FCollisionQueryParams TraceParams;
+
+	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+	TArray<AActor*> ActorsToIgnore;
+	ActorsToIgnore.Add(this);
+	bool RaycastHit = UKismetSystemLibrary::LineTraceSingle(GetWorld(), StartTrace, EndLocation, UEngineTypes::ConvertToTraceType(ECC_Pawn), false, ActorsToIgnore, EDrawDebugTrace::ForOneFrame, HitResult, true, FLinearColor::Red, FLinearColor::Green, 0.0f);
+	if (RaycastHit && HitResult.GetActor() != nullptr && HitResult.GetActor()->ActorHasTag("Player"))
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Hit: %s"), *HitResult.GetActor()->GetName()));
+	}else{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("No Hit")));
+	}
+}

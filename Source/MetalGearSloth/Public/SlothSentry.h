@@ -22,6 +22,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+private:
+	void PerformRaycast();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -29,4 +32,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Create an float distance for the raycast to be able to travel
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Raycast")
+	float EnemyViewDistance = 1000.0f;
 };
