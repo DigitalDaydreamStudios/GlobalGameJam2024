@@ -3,17 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
 #include "SlothSentry.generated.h"
 
 UCLASS()
-class METALGEARSLOTH_API ASlothSentry : public APawn
+class METALGEARSLOTH_API ASlothSentry : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//UPawnMovementComponent* PawnMovementComponent;
 
 protected:
 	// Called when the game starts or when spawned
