@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "SlothSentry.generated.h"
 
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPlayerSpottedDelegate);
+
 class ATargetPoint;
 class AAIController;
 
@@ -17,6 +20,7 @@ class METALGEARSLOTH_API ASlothSentry : public ACharacter
 public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
+	FPlayerSpottedDelegate OnPlayerSpotted;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ATargetPoint*> PatrolLocations;
@@ -26,10 +30,12 @@ public:
 
 protected:
 	int currentPatrolLocationIndex = 0;
-
-protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+private:
+	void PerformRaycast();
+	void PlayerSpotted();
 
 public:	
 	// Called every frame
@@ -38,7 +44,18 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Create an float distance for the raycast to be able to travel
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
+	float EnemyViewDistance = 1000.0f;
+
+	// Set the width of the sentry cone based on this float in degrees
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
+	float SentryConeWidth = 90.0f;
+
+	// A Boolean to check if the Sentry is searching for the player
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
+	bool SearchingForPlayer = true;
+
 	UFUNCTION(BlueprintCallable)
 	void MoveToNextPatrolLocation();
-
 };
