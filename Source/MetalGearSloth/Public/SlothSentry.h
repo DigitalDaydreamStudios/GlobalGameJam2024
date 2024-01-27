@@ -10,6 +10,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPlayerSpottedDelegate);
 
 class ATargetPoint;
+class AAIController;
 
 UCLASS()
 class METALGEARSLOTH_API ASlothSentry : public ACharacter
@@ -23,6 +24,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ATargetPoint*> PatrolLocations;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TSubclassOf<AAIController> AIController;
 
 protected:
 	int currentPatrolLocationIndex = 0;
