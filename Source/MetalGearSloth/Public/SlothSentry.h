@@ -6,7 +6,10 @@
 #include "GameFramework/Character.h"
 #include "SlothSentry.generated.h"
 
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPlayerSpottedDelegate);
+
+class ATargetPoint;
 
 UCLASS()
 class METALGEARSLOTH_API ASlothSentry : public ACharacter
@@ -18,7 +21,11 @@ public:
 	ASlothSentry();
 	FPlayerSpottedDelegate OnPlayerSpotted;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<ATargetPoint*> PatrolLocations;
+
 protected:
+	int currentPatrolLocationIndex = 0;
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -44,4 +51,7 @@ public:
 	// A Boolean to check if the Sentry is searching for the player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sentry")
 	bool SearchingForPlayer = true;
+
+	UFUNCTION(BlueprintCallable)
+	void MoveToNextPatrolLocation();
 };
