@@ -145,3 +145,13 @@ void ASlothSentry::MoveToNextPatrolLocation()
 	}
 	return;
 }
+
+FVector ASlothSentry::GetNextPatrolLocation()
+{
+	if (PatrolLocations.Num() == 0) { return GetActorLocation(); }
+
+	if (currentPatrolLocationIndex >= (PatrolLocations.Num() - 1)) { currentPatrolLocationIndex = 0; }
+	else { currentPatrolLocationIndex++; }
+
+	return PatrolLocations[currentPatrolLocationIndex]->GetActorLocation();
+}
