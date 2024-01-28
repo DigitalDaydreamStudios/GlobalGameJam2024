@@ -28,6 +28,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ATargetPoint*> PatrolLocations;
 
+	
+
 protected:
 	int currentPatrolLocationIndex = 0;
 	// Called when the game starts or when spawned
