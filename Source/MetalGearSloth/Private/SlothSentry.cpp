@@ -8,7 +8,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "AIController.h"
-#include "Runtime/UMG/Public/UMG.h"
+// #include "Runtime/UMG/Public/UMG.h"
+#include "SlothInstance.h"
 
 ASlothSentry::ASlothSentry()
 {
@@ -93,11 +94,13 @@ void ASlothSentry::PlayerSpotted()
 	SearchingForPlayer = false;
 	OnPlayerSpotted.Broadcast();
 
-	// Show Clench UI
-	// ClenchUIInstance = CreateWidget(GetLocalViewingPlayerController(), ClenchUITemplate);
-	// if (ClenchUIInstance != nullptr) {
-	// 	ClenchUIInstance->AddToViewport();
-	// }
+	// Get the SlothInstance
+	USlothInstance* SlothInstance = Cast<USlothInstance>(GetGameInstance());
+	if (SlothInstance != nullptr)
+	{
+		// Call the StartClenchMiniGame function
+		SlothInstance->StartClenchMiniGame();
+	}
 
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Player Spotted")));
