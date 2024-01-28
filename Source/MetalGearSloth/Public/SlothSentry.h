@@ -20,13 +20,12 @@ class METALGEARSLOTH_API ASlothSentry : public ACharacter
 public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
+
+	UPROPERTY(BlueprintAssignable)
 	FPlayerSpottedDelegate OnPlayerSpotted;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ATargetPoint*> PatrolLocations;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<AAIController> AIController;
 
 protected:
 	int currentPatrolLocationIndex = 0;
