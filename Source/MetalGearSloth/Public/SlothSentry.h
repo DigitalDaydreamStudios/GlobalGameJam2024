@@ -20,6 +20,7 @@ class METALGEARSLOTH_API ASlothSentry : public ACharacter
 public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
+	// Handle the player being spotted with a delegate
 
 	UPROPERTY(BlueprintAssignable)
 	FPlayerSpottedDelegate OnPlayerSpotted;
@@ -35,7 +36,7 @@ protected:
 private:
 	void PerformRaycast();
 	void PlayerSpotted();
-
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
