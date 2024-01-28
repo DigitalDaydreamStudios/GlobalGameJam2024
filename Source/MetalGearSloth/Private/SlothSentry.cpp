@@ -22,7 +22,7 @@ void ASlothSentry::BeginPlay()
 {
 	Super::BeginPlay();
 	currentPatrolLocationIndex = -1;
-	MoveToNextPatrolLocation();
+	//MoveToNextPatrolLocation();
 }
 
 // Called every frame
@@ -120,7 +120,7 @@ void ASlothSentry::MoveToNextPatrolLocation()
 			//{
 			//	MoveReq.SetGoalLocation(Destination);
 			//}
-			MoveReq.SetGoalLocation(PatrolLocations[0]->GetActorLocation());
+			MoveReq.SetGoalLocation(PatrolLocations[currentPatrolLocationIndex]->GetActorLocation());
 			MoveReq.SetNavigationFilter(AIController->GetDefaultNavigationFilterClass());
 
 			FPathFollowingRequestResult ResultData = AIController->MoveTo(MoveReq);
