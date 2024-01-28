@@ -55,7 +55,7 @@ void ASlothSentry::PerformRaycast()
 	for (int32 i = 0; i < NumberOfRays; i++)
 	{
 		 // Calculate the rotation for this ray
-		float AdjustConeToFaceFront = 90.0f;
+		float AdjustConeToFaceFront = 45.0f;
 		float AngleDegrees = -SentryConeWidth + AdjustConeToFaceFront + (SentryConeWidth * i / (NumberOfRays - 1));
 		FRotator RayRotation = BaseRotation + FRotator(0, AngleDegrees, 0);
 
@@ -84,7 +84,7 @@ void ASlothSentry::PerformRaycast()
 		{	
 			PlayerSpotted();
 		}
-			}
+	}
 }
 
 void ASlothSentry::PlayerSpotted()
