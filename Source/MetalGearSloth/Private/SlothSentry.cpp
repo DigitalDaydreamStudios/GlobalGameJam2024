@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "AIController.h"
+#include "Runtime/UMG/Public/UMG.h"
 
 ASlothSentry::ASlothSentry()
 {
@@ -91,6 +92,14 @@ void ASlothSentry::PlayerSpotted()
 {
 	SearchingForPlayer = false;
 	OnPlayerSpotted.Broadcast();
+
+	// Show Clench UI
+	// ClenchUIInstance = CreateWidget(GetLocalViewingPlayerController(), ClenchUITemplate);
+	// if (ClenchUIInstance != nullptr) {
+	// 	ClenchUIInstance->AddToViewport();
+	// }
+
+
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Player Spotted")));
 }
 

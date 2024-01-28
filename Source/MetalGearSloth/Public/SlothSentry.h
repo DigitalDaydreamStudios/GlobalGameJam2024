@@ -17,6 +17,12 @@ class METALGEARSLOTH_API ASlothSentry : public ACharacter
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class TSubclassOf<UUserWidget> ClenchUITemplate;
+
+	UPROPERTY()
+	UUserWidget* ClenchUIInstance;
+
 public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
@@ -27,6 +33,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ATargetPoint*> PatrolLocations;
+
+	
 
 protected:
 	int currentPatrolLocationIndex = 0;
