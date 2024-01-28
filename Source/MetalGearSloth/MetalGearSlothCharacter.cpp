@@ -69,7 +69,9 @@ void AMetalGearSlothCharacter::BeginPlay()
 	}
 
 	GameplayUIInstance = CreateWidget(GetLocalViewingPlayerController(), GameplayUITemplate);
-	GameplayUIInstance->AddToViewport();
+	if (GameplayUIInstance != nullptr) {
+		GameplayUIInstance->AddToViewport();
+	}
 }
 
 void AMetalGearSlothCharacter::Pause()
@@ -78,7 +80,9 @@ void AMetalGearSlothCharacter::Pause()
 	{
 		GetLocalViewingPlayerController()->Pause();
 		PauseMenuInstance = CreateWidget(GetLocalViewingPlayerController(), PauseMenuTemplate);
-		PauseMenuInstance->AddToViewport();
+		if (PauseMenuInstance != nullptr) {
+			PauseMenuInstance->AddToViewport();
+		}
 	}
 	
 	//GetLocalViewingPlayerController()->pause
