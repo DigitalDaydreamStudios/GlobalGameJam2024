@@ -57,4 +57,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void MoveToNextPatrolLocation();
+
+	UFUNCTION(BlueprintCallable)
+	FVector GetNextPatrolLocation();
 };
