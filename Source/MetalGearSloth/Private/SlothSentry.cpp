@@ -9,7 +9,6 @@
 #include "GameFramework/Controller.h"
 #include "AIController.h"
 
-// Sets default values
 ASlothSentry::ASlothSentry()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -56,7 +55,8 @@ void ASlothSentry::PerformRaycast()
 	for (int32 i = 0; i < NumberOfRays; i++)
 	{
 		 // Calculate the rotation for this ray
-		float AngleDegrees = -SentryConeWidth + (SentryConeWidth * i / (NumberOfRays - 1));
+		float AdjustConeToFaceFront = 90.0f;
+		float AngleDegrees = -SentryConeWidth + AdjustConeToFaceFront + (SentryConeWidth * i / (NumberOfRays - 1));
 		FRotator RayRotation = BaseRotation + FRotator(0, AngleDegrees, 0);
 
 		// Calculate the end point for this ray
@@ -81,10 +81,10 @@ void ASlothSentry::PerformRaycast()
 
 		// Check if the ray hit a player
 		if (RaycastHit && HitResult.GetActor() != nullptr && HitResult.GetActor()->ActorHasTag("Player"))
-		{
+		{	
 			PlayerSpotted();
 		}
-	}
+			}
 }
 
 void ASlothSentry::PlayerSpotted()
