@@ -11,7 +11,6 @@
 #include "EnhancedInputSubsystems.h"
 #include "Runtime/UMG/Public/UMG.h"
 
-
 //////////////////////////////////////////////////////////////////////////
 // AMetalGearSlothCharacter
 
@@ -68,6 +67,9 @@ void AMetalGearSlothCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+
+	GameplayUIInstance = CreateWidget(GetLocalViewingPlayerController(), GameplayUITemplate);
+	GameplayUIInstance->AddToViewport();
 }
 
 void AMetalGearSlothCharacter::Pause()

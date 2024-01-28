@@ -47,6 +47,12 @@ class AMetalGearSlothCharacter : public ACharacter
 	UPROPERTY()
 	UUserWidget* PauseMenuInstance;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class TSubclassOf<UUserWidget> GameplayUITemplate;
+
+	UPROPERTY()
+	UUserWidget* GameplayUIInstance;
+
 public:
 	AMetalGearSlothCharacter();
 	
