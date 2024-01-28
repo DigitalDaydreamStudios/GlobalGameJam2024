@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Runtime/UMG/Public/UMG.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -69,6 +70,18 @@ void AMetalGearSlothCharacter::BeginPlay()
 	}
 }
 
+void AMetalGearSlothCharacter::Pause()
+{
+	if (!GetLocalViewingPlayerController()->IsPaused()) 
+	{
+		GetLocalViewingPlayerController()->Pause();
+		PauseMenuInstance = CreateWidget(GetLocalViewingPlayerController(), PauseMenuTemplate);
+		PauseMenuInstance->AddToViewport();
+	}
+	
+	//GetLocalViewingPlayerController()->pause
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -86,6 +99,8 @@ void AMetalGearSlothCharacter::SetupPlayerInputComponent(class UInputComponent* 
 
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMetalGearSlothCharacter::Look);
+
+		EnhancedInputComponent->BindAction(PauseAction, ETriggerEvent::Triggered, this, &AMetalGearSlothCharacter::Pause);
 
 	}
 

@@ -37,6 +37,16 @@ class AMetalGearSlothCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+	/** Pause Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* PauseAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class TSubclassOf<UUserWidget> PauseMenuTemplate;
+
+	UPROPERTY()
+	UUserWidget* PauseMenuInstance;
+
 public:
 	AMetalGearSlothCharacter();
 	
@@ -56,6 +66,9 @@ protected:
 	
 	// To add mapping context
 	virtual void BeginPlay();
+
+	UFUNCTION(BlueprintCallable)
+	void Pause();
 
 public:
 	/** Returns CameraBoom subobject **/
