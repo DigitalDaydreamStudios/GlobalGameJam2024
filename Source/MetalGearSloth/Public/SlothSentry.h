@@ -20,13 +20,13 @@ class METALGEARSLOTH_API ASlothSentry : public ACharacter
 public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
+	// Handle the player being spotted with a delegate
+
+	UPROPERTY(BlueprintAssignable)
 	FPlayerSpottedDelegate OnPlayerSpotted;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ATargetPoint*> PatrolLocations;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<AAIController> AIController;
 
 protected:
 	int currentPatrolLocationIndex = 0;
@@ -36,7 +36,7 @@ protected:
 private:
 	void PerformRaycast();
 	void PlayerSpotted();
-
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -58,4 +58,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void MoveToNextPatrolLocation();
+
+	UFUNCTION(BlueprintCallable)
+	FVector GetNextPatrolLocation();
 };
