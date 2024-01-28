@@ -21,13 +21,12 @@ public:
 	// Sets default values for this pawn's properties
 	ASlothSentry();
 	// Handle the player being spotted with a delegate
+
+	UPROPERTY(BlueprintAssignable)
 	FPlayerSpottedDelegate OnPlayerSpotted;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ATargetPoint*> PatrolLocations;
-
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TSubclassOf<AAIController> AIController;
 
 protected:
 	int currentPatrolLocationIndex = 0;
