@@ -30,6 +30,12 @@ jobs:
       shell: powershell
       run: my-tools/build-scripts/build.ps1
       id: build_game
+
+    - name: Compress and Copy to OneDrive
+      shell: powershell
+      run: |
+        Compress-Archive -Path "C:\Users\builder\actions-runner\_work\Builds\Windows" -DestinationPath "C:\Users\builder\OneDrive\Digital Daydream\Games\2024GGJ\Windows.zip" -Force
+        
     
 
     
