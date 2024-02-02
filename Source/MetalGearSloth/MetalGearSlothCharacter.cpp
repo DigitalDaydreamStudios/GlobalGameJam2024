@@ -68,7 +68,8 @@ void AMetalGearSlothCharacter::BeginPlay()
 		}
 	}
 
-	GameplayUIInstance = CreateWidget(GetLocalViewingPlayerController(), GameplayUITemplate);
+	APlayerController* pc = GetLocalViewingPlayerController();
+	GameplayUIInstance = CreateWidget(GetWorld(), GameplayUITemplate);
 	if (GameplayUIInstance != nullptr) {
 		GameplayUIInstance->AddToViewport();
 	}
