@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Kismet/GameplayStatics.h"
 #include "Runtime/UMG/Public/UMG.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -68,9 +69,8 @@ void AMetalGearSlothCharacter::BeginPlay()
 		}
 	}
 
-	APlayerController* pc = GetLocalViewingPlayerController();
 	GameplayUIInstance = CreateWidget(GetWorld(), GameplayUITemplate);
-	if (GameplayUIInstance != nullptr) {
+	if (GameplayUIInstance != nullptr && UGameplayStatics::GetCurrentLevelName(GetWorld(), true) != "StartMenu") {
 		GameplayUIInstance->AddToViewport();
 	}
 }
